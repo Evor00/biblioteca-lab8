@@ -1,0 +1,34 @@
+# Binaries
+bin/
+obj/
+
+# Visual Studio / Rider
+.vs/
+*.user
+*.suo
+*.userprefs
+*.DotSettings.user
+
+# User-specific settings
+.vscode/settings.json
+
+# Publish output
+publish/
+out/
+
+# Logs
+*.log
+logs/
+
+# ASP.NET Core secrets
+appsettings.Development.json
+secrets.json
+
+# Node / npm (si hay build frontend)
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,22 @@
+@model Libro
+@{
+    ViewData["Title"] = "Dar de baja libro";
+}
+
+<h1 class="h3 mb-3">Dar de baja libro</h1>
+<p>El libro dejará de mostrarse en el listado. No se elimina el registro.</p>
+
+<dl class="row col-lg-8">
+    <dt class="col-sm-3">Título</dt>
+    <dd class="col-sm-9">@Model.Titulo</dd>
+    <dt class="col-sm-3">Autor</dt>
+    <dd class="col-sm-9">@Model.NombreAutor</dd>
+    <dt class="col-sm-3">ISBN</dt>
+    <dd class="col-sm-9">@Model.ISBN</dd>
+</dl>
+
+<form asp-action="Delete" asp-route-id="@Model.LibroId" method="post" class="d-flex gap-2">
+    <input type="hidden" asp-for="LibroId" />
+    <button type="submit" class="btn btn-danger">Confirmar baja</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>

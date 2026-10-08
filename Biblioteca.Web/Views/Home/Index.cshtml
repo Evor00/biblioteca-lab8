@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="bib-hero">
+    <h1>📚 Biblioteca Digital</h1>
+    <p class="lead mb-0">Sistema de gestión de libros, socios y préstamos. Semana 08 &mdash; ASP.NET Core MVC + Dapper.</p>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+                <div class="mb-3" style="font-size:2.2rem;">📖</div>
+                <h2 class="h5">Libros</h2>
+                <p>Catálogo activo, búsqueda por título, alta, edición y baja lógica de libros.</p>
+                <a class="btn btn-primary mt-auto" asp-controller="Libros" asp-action="Index">Ver libros</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+                <div class="mb-3" style="font-size:2.2rem;">👥</div>
+                <h2 class="h5">Socios</h2>
+                <p>Listado de socios activos y registro de nuevos socios con validación de DNI único.</p>
+                <a class="btn btn-primary mt-auto" asp-controller="Socios" asp-action="Index">Ver socios</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+                <div class="mb-3" style="font-size:2.2rem;">📋</div>
+                <h2 class="h5">Préstamos</h2>
+                <p>Reporte filtrado por rango de fechas, con socio, libros prestados y estado del préstamo.</p>
+                <a class="btn btn-primary mt-auto" asp-controller="Prestamos" asp-action="Reporte">Ver reporte</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-1">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="h5" style="color: var(--bib-muted); font-size:.75rem; text-transform:uppercase; letter-spacing:.8px; margin-bottom:.75rem;">Tecnologías utilizadas</h2>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="badge" style="background:rgba(79,70,229,.2);color:#818cf8;border:1px solid rgba(79,70,229,.3);padding:.4em .8em;border-radius:6px;">ASP.NET Core MVC 10</span>
+                    <span class="badge" style="background:rgba(6,182,212,.2);color:#22d3ee;border:1px solid rgba(6,182,212,.3);padding:.4em .8em;border-radius:6px;">Dapper ORM</span>
+                    <span class="badge" style="background:rgba(34,197,94,.2);color:#4ade80;border:1px solid rgba(34,197,94,.3);padding:.4em .8em;border-radius:6px;">SQL Server LocalDB</span>
+                    <span class="badge" style="background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid rgba(245,158,11,.3);padding:.4em .8em;border-radius:6px;">Stored Procedures</span>
+                    <span class="badge" style="background:rgba(168,85,247,.2);color:#c084fc;border:1px solid rgba(168,85,247,.3);padding:.4em .8em;border-radius:6px;">Bootstrap 5</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

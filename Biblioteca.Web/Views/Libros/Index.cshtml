@@ -1,0 +1,69 @@
+@model IEnumerable<Libro>
+@{
+    ViewData["Title"] = "Libros";
+    var tituloBusqueda = ViewData["Titulo"] as string;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">📖 Libros</h1>
+    <a asp-action="Create" class="btn btn-primary">+ Nuevo libro</a>
+</div>
+
+<div class="search-bar">
+    <form method="get" asp-action="Index" class="row g-2 align-items-end">
+        <div class="col-md-7">
+            <label class="form-label" for="titulo">Buscar por título</label>
+            <input type="text" id="titulo" name="titulo" value="@tituloBusqueda"
+                   class="form-control" placeholder="Ej: Rayuela, Cien años..." />
+        </div>
+        <div class="col-md-auto d-flex gap-2">
+            <button type="submit" class="btn btn-primary">🔍 Buscar</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">↺ Ver todos</a>
+        </div>
+    </form>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(tituloBusqueda))
+{
+    <p class="text-muted mb-2" style="font-size:.85rem;">
+        Resultados para: <strong style="color:var(--bib-accent);">"@tituloBusqueda"</strong>
+    </p>
+}
+
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>ISBN</th>
+                <th>Ejemplares</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-muted text-center py-4">
+                        @if (string.IsNullOrWhiteSpace(tituloBusqueda))
+                        {
+                            <span>No hay libros activos en el catálogo.</span>
+                        }
+                        else
+                        {
+                            <span>Sin resultados para "<strong>@tituloBusqueda</strong>".</span>
+                        }
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var libro in Model)
+                {
+                    <partial name="_LibroFila" model="libro" />
+                }
+            }
+        </tbody>
+    </table>
+</div>

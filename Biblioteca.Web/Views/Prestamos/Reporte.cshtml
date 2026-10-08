@@ -1,0 +1,79 @@
+@model IEnumerable<PrestamoReporte>
+@{
+    ViewData["Title"] = "Reporte de préstamos";
+}
+
+<h1 class="h3 mb-4">📋 Reporte de préstamos</h1>
+
+<div class="search-bar">
+    <form method="get" asp-action="Reporte" class="row g-3 align-items-end">
+        <div class="col-sm-auto">
+            <label class="form-label" for="desde">Desde</label>
+            <input type="date" id="desde" name="desde" class="form-control" value="@ViewData["Desde"]" />
+        </div>
+        <div class="col-sm-auto">
+            <label class="form-label" for="hasta">Hasta</label>
+            <input type="date" id="hasta" name="hasta" class="form-control" value="@ViewData["Hasta"]" />
+        </div>
+        <div class="col-sm-auto d-flex gap-2">
+            <button type="submit" class="btn btn-primary">🔍 Filtrar</button>
+            <a asp-action="Reporte" class="btn btn-outline-secondary">↺ Limpiar</a>
+        </div>
+    </form>
+</div>
+
+@if (ViewData["Error"] is string error)
+{
+    <div class="alert alert-warning">⚠️ @error</div>
+}
+
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Socio</th>
+                <th>Libros prestados</th>
+                <th>Fecha límite</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="4" class="text-muted text-center py-4">
+                        @if (ViewData["Desde"] == null && ViewData["Hasta"] == null)
+                        {
+                            <span>Seleccione un rango de fechas para ver los préstamos.</span>
+                        }
+                        else
+                        {
+                            <span>No hay préstamos en el rango de fechas indicado.</span>
+                        }
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td><strong>@item.Socio</strong></td>
+                        <td style="max-width:300px;font-size:.88rem;color:var(--bib-muted);">@item.Libros</td>
+                        <td>@item.FechaLimite.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @if (item.Estado == "Devuelto")
+                            {
+                                <span class="badge text-bg-success">✓ @item.Estado</span>
+                            }
+                            else
+                            {
+                                <span class="badge text-bg-warning">⏳ @item.Estado</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
